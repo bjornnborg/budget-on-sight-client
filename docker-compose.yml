@@ -1,0 +1,24 @@
+version: '3'
+networks:
+  my-network:
+    driver: bridge
+
+services:
+  mysql-service:
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_pass
+    image: 'mysql:5.6'
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - my-network
+
+  rails-one:
+    image: bjornnborg/budget-on-sight
+    container_name: budget-on-sight-client
+    networks:
+      - my-network
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql-service
