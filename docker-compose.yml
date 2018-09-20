@@ -8,6 +8,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root_pass
     image: 'mysql:5.6'
+    container_name: bosc-mysql
     volumes:
       - ./db_data:/var/lib/mysql
     networks:
@@ -15,7 +16,7 @@ services:
 
   rails-one:
     image: bjornnborg/budget-on-sight
-    container_name: budget-on-sight-client
+    container_name: bosc-rails
     networks:
       - my-network
     ports:
