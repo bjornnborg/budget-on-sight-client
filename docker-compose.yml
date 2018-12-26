@@ -4,6 +4,20 @@ networks:
     driver: bridge
 
 services:
+  nginx:
+    build:
+      dockerfile: ./nginx.dockerfile
+      context: .
+    container_name: bosc-nginx
+    ports: 
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx
+    networks:
+      - my-network
+    depends_on:
+      - rails-one
+
   mysql-service:
     environment:
       - MYSQL_ROOT_PASSWORD=root_pass
