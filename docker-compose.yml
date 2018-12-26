@@ -5,9 +5,7 @@ networks:
 
 services:
   nginx:
-    build:
-      dockerfile: ./nginx.dockerfile
-      context: .
+    image: nginx
     container_name: bosc-nginx
     ports: 
       - '80:80'
